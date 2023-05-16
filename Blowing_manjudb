@@ -1,0 +1,78 @@
+#Enter X when there is a perfect strike(Note : program has been designed in way where user should enter X instead of 10 when a strike is made)
+#Enter / when all user knocks down all 10 pins in two tries
+sc = xflag = yflag=0
+for i in range(1,11) :
+    f1= input("enter the first turn value")
+    if int(f1) > 10 :
+        print ("Invalid Input")
+        break
+    if f1=='X' :
+        if xflag == 1 :
+            sc= sc + 10
+            xflag= 0
+        elif yflag == 1 :
+            sc= sc+10
+            yflag = 0
+        sc=sc+10
+        xflag=1
+        continue
+    else :
+        f1=int(f1)
+        if yflag == 1 :
+            sc= sc+f1
+            yflag = 0
+        f2 = input("enter the second turn value")
+        if f2=='X' :
+            if f1 == 0 :
+                if xflag == 1 :
+                    sc= sc + 10
+                    xflag= 0
+                elif yflag == 1 :
+                    sc= sc+10
+                    yflag = 0
+                sc=sc+10
+                xflag=1
+                continue
+            else :
+                print ("Invalid Input")
+                break
+        elif f2=='/' :
+            if xflag == 1 :
+                sc= sc+10
+                xflag = 0
+            sc= sc+10
+            yflag=1
+            continue
+        else :
+            f2=int(f2)
+            if (f1+f2) > 10 :
+                print("Invalid Input")
+                break
+            else :
+                sc= sc + f1 + f2
+    if xflag== 1 :
+        sc=sc+f1+f2
+        xflag=0
+    if yflag == 1:
+          sc= sc+f1
+          yflag=0
+    
+if xflag== 1 :
+    f1 = input("Enter extra value")
+    if f1 == 'X' :
+        sc=sc+10
+    else :
+        f2 = input("Enter second extra value")
+        if f2 =='/' :
+            sc=sc+10
+        else :
+            sc=sc+int(f1)+int(f2)
+    
+elif yflag == 1:
+    f1 = input("Enter Extra value")
+    if f1 == 'X' :
+        sc= sc+10
+    else :
+        sc=sc+int(f1)
+        
+print(sc)
