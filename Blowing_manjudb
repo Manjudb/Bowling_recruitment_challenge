@@ -1,9 +1,11 @@
 #Final code 1
 #Enter X when there is a perfect stike(Note : program has been designed in way where user should enter X instead of 10 when a strike is made)
 #Enter / when all user knocks down all 10 pins in two tries
+
+#Validating First turn points
 sc = xflag = yflag=0
 for i in range(1,11) :
-    f1= input("enter the first turn value: ")
+    f1= input("enter the first turn points: ")
     if f1=='X' :
         if xflag == 1 :
             sc= sc + 10
@@ -15,14 +17,15 @@ for i in range(1,11) :
         xflag=1
         continue
     if int(f1) > 10 :
-        print ("Invalid Input")
+        print ("Invalid Input : Total points more than 10")
         break
+#Validating second turn input    
     else :
         f1=int(f1)
         if yflag == 1 :
             sc= sc+f1
             yflag = 0
-        f2 = input("enter the second turn value: ")
+        f2 = input("enter the second turn points: ")
         if f2=='X' :
             if f1 == 0 :
                 if xflag == 1 :
@@ -35,7 +38,7 @@ for i in range(1,11) :
                 xflag=1
                 continue
             else :
-                print ("Invalid Input")
+                print ("Invalid Input : Strike cannot be done as user has scored points in first turn")
                 break
         elif f2=='/' :
             if xflag == 1 :
@@ -47,7 +50,7 @@ for i in range(1,11) :
         else :
             f2=int(f2)
             if (f1+f2) > 10 :
-                print("Invalid Input")
+                print("Invalid Input : user can only get a maximun of 10 points from two tries")
                 break
             else :
                 sc= sc + f1 + f2
@@ -57,20 +60,22 @@ for i in range(1,11) :
     if yflag == 1:
           sc= sc+f1
           yflag=0
-    
+ 
+#Two bonus turns when user scores X in the last attempt   
 if xflag== 1 :
-    f1 = input("Enter extra value: ")
+    f1 = input("Enter first bonus points: ")
     if f1 == 'X' :
         sc=sc+10
     else :
-        f2 = input("Enter second extra value: ")
+        f2 = input("Enter second bonus points: ")
         if f2 =='/' :
             sc=sc+10
         else :
             sc=sc+int(f1)+int(f2)
-    
+ 
+#Three bonus turns when user scores / in the last attempt    
 elif yflag == 1:
-    f1 = input("Enter Extra value: ")
+    f1 = input("Enter bonus points: ")
     if f1 == 'X' :
         sc= sc+10
     else :
